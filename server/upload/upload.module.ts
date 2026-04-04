@@ -6,12 +6,12 @@ import { ClaudeParseService } from './services/claude-parse.service';
 import { GeminiParseService } from './services/gemini-parse.service';
 import { ImportService } from './services/import.service';
 import { AI_PARSE_SERVICE } from './services/ai-parse.interface';
-import { Upload } from '../database/entities/upload.entity';
-import { Statement } from '../database/entities/statement.entity';
-import { Transaction } from '../database/entities/transaction.entity';
-import { Merchant } from '../database/entities/merchant.entity';
-import { MerchantAlias } from '../database/entities/merchant-alias.entity';
-import { BankFormat } from '../database/entities/bank-format.entity';
+import { Upload } from '@server/database/entities';
+import { Statement } from '@server/database/entities';
+import { Transaction } from '@server/database/entities';
+import { Merchant } from '@server/database/entities';
+import { MerchantAlias } from '@server/database/entities';
+import { BankFormat } from '@server/database/entities';
 
 @Module({
   imports: [

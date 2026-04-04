@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { api } from '../api/client';
-import type { TransactionItem } from '../types';
+import type { TransactionItem } from '@common/types';
 
 interface TransactionFilters {
   from?: string;

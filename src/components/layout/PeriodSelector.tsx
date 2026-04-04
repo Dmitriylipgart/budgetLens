@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { usePeriod } from '../../hooks/usePeriod';
-import { getCurrentMonth, getLastMonth, getLastNMonths, formatDate } from '../../utils/formatters';
+import { getCurrentMonth, getLastMonth, getLastNMonths, formatDate } from '@common/utils/';
 
 const presets = [
   { label: 'This Month', fn: getCurrentMonth },

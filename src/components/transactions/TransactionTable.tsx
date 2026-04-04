@@ -1,6 +1,6 @@
 import { AmountDisplay } from '../shared/AmountDisplay';
-import { formatDateTime } from '../../utils/formatters';
-import type { TransactionItem } from '../../types';
+import { formatDateTime } from '@common/utils/';
+import type { TransactionItem } from '@common/types';
 
 interface Props {
   transactions: TransactionItem[];

@@ -2,8 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app.module';
-import { HttpExceptionFilter } from './common/filters/http-exception.filter';
-import { TransformInterceptor } from './common/interceptors/transform.interceptor';
+import { HttpExceptionFilter } from '@server/common/filters/';
+import { TransformInterceptor } from '@server/common/interceptors/';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -40,4 +40,7 @@ async function bootstrap() {
   console.log(`🔎 BudgetLens running on http://${host}:${port}`);
 }
 
-bootstrap();
+bootstrap().catch(err => {
+  console.error('Error during bootstrap:', err);
+  process.exit(1);
+});

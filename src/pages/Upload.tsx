@@ -4,7 +4,7 @@ import { UploadProgress } from '../components/upload/UploadProgress';
 import { ImportSummary } from '../components/upload/ImportSummary';
 import { api } from '../api/client';
 import { formatDateTime } from '../utils/formatters';
-import type { ImportResult, UploadRecord } from '../types';
+import type { ImportResult, UploadRecord } from '@common/types';
 
 export function Upload() {
   const [step, setStep] = useState<'idle' | 'uploading' | 'parsing' | 'saving' | 'done' | 'error'>(

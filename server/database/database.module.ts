@@ -1,7 +1,6 @@
-import { Module, Global, OnModuleInit } from '@nestjs/common';
+import { Module, Global } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
-import { DataSource } from 'typeorm';
 import { entities } from './entities';
 import { SeedService } from './seeds/initial.seed';
 import * as fs from 'fs';

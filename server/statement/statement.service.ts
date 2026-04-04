@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Statement } from '../database/entities/statement.entity';
+import { Statement } from '@server/database/entities';
 
 @Injectable()
 export class StatementService {

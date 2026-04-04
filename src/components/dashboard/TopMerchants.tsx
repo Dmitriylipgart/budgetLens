@@ -1,6 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { formatAmount } from '../../utils/formatters';
-import type { MerchantSummary } from '../../types';
+import { formatAmount } from '@common/utils/';
+import type { MerchantSummary } from '@common/types';
 
 interface Props {
   data: MerchantSummary[];

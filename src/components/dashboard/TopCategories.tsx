@@ -1,7 +1,7 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { formatAmount } from '../../utils/formatters';
-import { getCategoryColor } from '../../utils/colors';
-import type { CategorySummary } from '../../types';
+import { formatAmount } from '@common/utils/';
+import { getCategoryColor } from '@common/utils/';
+import type { CategorySummary } from '@common/types';
 
 interface Props {
   data: CategorySummary[];

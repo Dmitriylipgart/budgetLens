@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { api } from '../../api/client';
+import { api } from '@api/client';
 import { AmountDisplay } from '../shared/AmountDisplay';
-import { formatDateTime } from '../../utils/formatters';
+import { formatDateTime } from '@common/utils/';
 
 export function RecentTransactions() {
   const [transactions, setTransactions] = useState<any[]>([]);

@@ -13,7 +13,7 @@ export function Transactions() {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
 
-  const { items, total, totalPages, loading, error } = useTransactions({
+  const { items, total, totalPages, loading } = useTransactions({
     from,
     to,
     direction: direction || undefined,

@@ -1,12 +1,12 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource } from 'typeorm';
-import { Statement } from '../../database/entities/statement.entity';
-import { Transaction } from '../../database/entities/transaction.entity';
-import { Merchant } from '../../database/entities/merchant.entity';
-import { MerchantAlias } from '../../database/entities/merchant-alias.entity';
-import { BankFormat } from '../../database/entities/bank-format.entity';
-import { ParseResult, ParsedTransaction } from '../dto/parse-result.dto';
+import { Statement } from '@server/database/entities';
+import { Transaction } from '@server/database/entities';
+import { Merchant } from '@server/database/entities';
+import { MerchantAlias } from '@server/database/entities';
+import { BankFormat } from '@server/database/entities';
+import { ParseResult } from '../dto/parse-result.dto';
 
 export interface ImportStats {
   statementId: number;
@@ -42,6 +42,12 @@ export class ImportService {
     fileHash: string,
     filename: string,
   ): Promise<ImportStats> {
+    // 1. Get bank format
+    const bankFormat = await this.bankFormatRepo.findOne({
+      where: { code: 'priorbank' },
+    });
+    if (!bankFormat) throw new Error('Priorbank format not found in database');
+
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
@@ -54,12 +60,6 @@ export class ImportService {
     };
 
     try {
-      // 1. Get bank format
-      const bankFormat = await this.bankFormatRepo.findOne({
-        where: { code: 'priorbank' },
-      });
-      if (!bankFormat) throw new Error('Priorbank format not found in database');
-
       // 2. Create statement
       const statement = queryRunner.manager.create(Statement, {
         userId,

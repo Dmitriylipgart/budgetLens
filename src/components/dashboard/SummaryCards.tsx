@@ -1,5 +1,5 @@
-import { formatAmount } from '../../utils/formatters';
-import type { OverviewData } from '../../types';
+import { formatAmount } from '@common/utils/';
+import type { OverviewData } from '@common/types';
 
 interface Props {
   data: OverviewData | null;

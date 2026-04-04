@@ -7,8 +7,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { formatAmount, formatDate } from '../../utils/formatters';
-import type { TrendPoint } from '../../types';
+import { formatAmount, formatDate } from '@common/utils/';
+import type { TrendPoint } from '@common/types';
 
 interface Props {
   data: TrendPoint[];

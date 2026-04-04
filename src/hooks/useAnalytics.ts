@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../api/client';
 import { usePeriod } from './usePeriod';
-import type { OverviewData, MerchantSummary, CategorySummary, TrendPoint } from '../types';
+import type { OverviewData, MerchantSummary, CategorySummary, TrendPoint } from '@common/types';
 
 export function useOverview() {
   const { period } = usePeriod();

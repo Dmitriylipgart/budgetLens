@@ -1,8 +1,8 @@
 import { Logger, InternalServerErrorException } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
-import { decodeBuffer } from '../../common/utils/encoding.util';
 import { ParseResult, validateParseResult } from '../dto/parse-result.dto';
+import {decodeBuffer} from "@common/utils/encoding.util";
 
 /**
  * Shared logic for all AI parse services:
@@ -15,7 +15,7 @@ export abstract class BaseParseService {
   protected readonly logger: Logger;
   private skillContent: string | null = null;
 
-  constructor(loggerContext: string) {
+  protected constructor(loggerContext: string) {
     this.logger = new Logger(loggerContext);
   }
 
