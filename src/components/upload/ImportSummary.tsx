@@ -1,4 +1,4 @@
-import { formatDate, formatAmount } from '../../utils/formatters';
+import { formatDate } from '../../utils/formatters';
 import type { ImportResult } from '../../types';
 
 interface Props {
