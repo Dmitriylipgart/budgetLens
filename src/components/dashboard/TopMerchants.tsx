@@ -1,11 +1,4 @@
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { formatAmount } from '../../utils/formatters';
 import type { MerchantSummary } from '../../types';
 
@@ -48,9 +41,7 @@ export function TopMerchants({ data, loading }: Props) {
           />
           <Tooltip
             formatter={(value: number) => [`${formatAmount(value)} BYN`, 'Spent']}
-            labelFormatter={(label, payload) =>
-              payload?.[0]?.payload?.fullName || label
-            }
+            labelFormatter={(label, payload) => payload?.[0]?.payload?.fullName || label}
           />
           <Bar dataKey="amount" fill="#6366f1" radius={[0, 4, 4, 0]} />
         </BarChart>

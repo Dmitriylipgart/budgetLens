@@ -1,9 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource } from 'typeorm';
-import { Merchant } from '../database/entities/merchant.entity';
-import { MerchantAlias } from '../database/entities/merchant-alias.entity';
-import { Transaction } from '../database/entities/transaction.entity';
+import { Merchant, MerchantAlias, Transaction } from '@server/database/entities';
 
 @Injectable()
 export class MerchantService {

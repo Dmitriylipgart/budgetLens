@@ -41,10 +41,7 @@ export class TransactionService {
     };
   }
 
-  private applyFilters(
-    qb: SelectQueryBuilder<Transaction>,
-    query: TransactionQueryDto,
-  ) {
+  private applyFilters(qb: SelectQueryBuilder<Transaction>, query: TransactionQueryDto) {
     if (query.from) {
       qb.andWhere('txn.date >= :from', { from: query.from });
     }
@@ -82,10 +79,9 @@ export class TransactionService {
       });
     }
     if (query.search) {
-      qb.andWhere(
-        '(txn.rawDescription LIKE :search OR merchant.name LIKE :search)',
-        { search: `%${query.search}%` },
-      );
+      qb.andWhere('(txn.rawDescription LIKE :search OR merchant.name LIKE :search)', {
+        search: `%${query.search}%`,
+      });
     }
   }
 

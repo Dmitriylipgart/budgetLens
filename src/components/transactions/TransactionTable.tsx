@@ -39,10 +39,11 @@ export function TransactionTable({ transactions, loading }: Props) {
                 <td className="px-4 py-3 whitespace-nowrap text-gray-500">
                   {formatDateTime(txn.date)}
                 </td>
-                <td className="px-4 py-3 font-medium text-gray-900">
-                  {txn.merchant?.name || '—'}
-                </td>
-                <td className="px-4 py-3 max-w-xs truncate text-gray-500" title={txn.rawDescription}>
+                <td className="px-4 py-3 font-medium text-gray-900">{txn.merchant?.name || '—'}</td>
+                <td
+                  className="px-4 py-3 max-w-xs truncate text-gray-500"
+                  title={txn.rawDescription}
+                >
                   {txn.rawDescription}
                 </td>
                 <td className="px-4 py-3 text-right whitespace-nowrap">

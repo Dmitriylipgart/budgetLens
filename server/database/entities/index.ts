@@ -7,16 +7,7 @@ import { MerchantAlias } from './merchant-alias.entity';
 import { Upload } from './upload.entity';
 import { Setting } from './setting.entity';
 
-export {
-  User,
-  BankFormat,
-  Statement,
-  Transaction,
-  Merchant,
-  MerchantAlias,
-  Upload,
-  Setting,
-};
+export { User, BankFormat, Statement, Transaction, Merchant, MerchantAlias, Upload, Setting };
 
 export const entities = [
   User,

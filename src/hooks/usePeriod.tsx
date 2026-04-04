@@ -25,11 +25,7 @@ export function PeriodProvider({ children }: { children: ReactNode }) {
     setPeriodState({ from, to, label });
   }, []);
 
-  return (
-    <PeriodContext.Provider value={{ period, setPeriod }}>
-      {children}
-    </PeriodContext.Provider>
-  );
+  return <PeriodContext.Provider value={{ period, setPeriod }}>{children}</PeriodContext.Provider>;
 }
 
 export function usePeriod() {

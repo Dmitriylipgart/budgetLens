@@ -8,10 +8,7 @@ export class AnalyticsController {
   constructor(private analyticsService: AnalyticsService) {}
 
   @Get('overview')
-  async overview(
-    @CurrentUser() userId: number,
-    @Query() query: PeriodQueryDto,
-  ) {
+  async overview(@CurrentUser() userId: number, @Query() query: PeriodQueryDto) {
     return this.analyticsService.getOverview(userId, query.from, query.to);
   }
 
@@ -21,19 +18,11 @@ export class AnalyticsController {
     @Query() query: PeriodQueryDto,
     @Query('limit') limit?: number,
   ) {
-    return this.analyticsService.getByMerchant(
-      userId,
-      query.from,
-      query.to,
-      limit || 20,
-    );
+    return this.analyticsService.getByMerchant(userId, query.from, query.to, limit || 20);
   }
 
   @Get('by-category')
-  async byCategory(
-    @CurrentUser() userId: number,
-    @Query() query: PeriodQueryDto,
-  ) {
+  async byCategory(@CurrentUser() userId: number, @Query() query: PeriodQueryDto) {
     return this.analyticsService.getByCategory(userId, query.from, query.to);
   }
 
@@ -43,12 +32,7 @@ export class AnalyticsController {
     @Query() query: PeriodQueryDto,
     @Query('granularity') granularity?: 'day' | 'week' | 'month',
   ) {
-    return this.analyticsService.getTrends(
-      userId,
-      query.from,
-      query.to,
-      granularity || 'day',
-    );
+    return this.analyticsService.getTrends(userId, query.from, query.to, granularity || 'day');
   }
 
   @Get('recent')

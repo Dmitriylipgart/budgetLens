@@ -40,11 +40,21 @@ export function Merchants() {
             {loading
               ? Array.from({ length: 5 }).map((_, i) => (
                   <tr key={i} className="animate-pulse">
-                    <td className="px-4 py-3"><div className="h-4 w-32 rounded bg-gray-200" /></td>
-                    <td className="px-4 py-3"><div className="h-4 w-20 rounded bg-gray-200 ml-auto" /></td>
-                    <td className="px-4 py-3"><div className="h-4 w-10 rounded bg-gray-200 ml-auto" /></td>
-                    <td className="px-4 py-3"><div className="h-4 w-24 rounded bg-gray-200" /></td>
-                    <td className="px-4 py-3"><div className="h-4 w-12 rounded bg-gray-200" /></td>
+                    <td className="px-4 py-3">
+                      <div className="h-4 w-32 rounded bg-gray-200" />
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="h-4 w-20 rounded bg-gray-200 ml-auto" />
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="h-4 w-10 rounded bg-gray-200 ml-auto" />
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="h-4 w-24 rounded bg-gray-200" />
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="h-4 w-12 rounded bg-gray-200" />
+                    </td>
                   </tr>
                 ))
               : merchants.map((m: any) => (
@@ -58,16 +68,14 @@ export function Merchants() {
                     <td className="px-4 py-3 text-right font-medium tabular-nums text-red-600">
                       {formatAmount(m.totalAmount)} BYN
                     </td>
-                    <td className="px-4 py-3 text-right text-gray-500">
-                      {m.transactionCount}
-                    </td>
-                    <td className="px-4 py-3 text-gray-500 text-xs">
-                      {m.categoryGroup || '—'}
-                    </td>
+                    <td className="px-4 py-3 text-right text-gray-500">{m.transactionCount}</td>
+                    <td className="px-4 py-3 text-gray-500 text-xs">{m.categoryGroup || '—'}</td>
                     <td className="px-4 py-3">
-                      <span className={`text-xs font-medium ${
-                        m.confidence === 'high' ? 'text-emerald-600' : 'text-amber-600'
-                      }`}>
+                      <span
+                        className={`text-xs font-medium ${
+                          m.confidence === 'high' ? 'text-emerald-600' : 'text-amber-600'
+                        }`}
+                      >
                         {m.confidence}
                       </span>
                     </td>

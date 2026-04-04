@@ -1,5 +1,5 @@
 import { Controller, Get, Put, Post, Param, Body } from '@nestjs/common';
-import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { CurrentUser } from '@server/auth/decorators/current-user.decorator';
 import { MerchantService } from './merchant.service';
 import { UpdateMerchantDto, MergeMerchantDto } from './dto/update-merchant.dto';
 
@@ -13,10 +13,7 @@ export class MerchantController {
   }
 
   @Get(':id')
-  async findOne(
-    @CurrentUser() userId: number,
-    @Param('id') id: number,
-  ) {
+  async findOne(@CurrentUser() userId: number, @Param('id') id: number) {
     return this.merchantService.findOne(userId, id);
   }
 
@@ -30,10 +27,7 @@ export class MerchantController {
   }
 
   @Post('merge')
-  async merge(
-    @CurrentUser() userId: number,
-    @Body() dto: MergeMerchantDto,
-  ) {
+  async merge(@CurrentUser() userId: number, @Body() dto: MergeMerchantDto) {
     return this.merchantService.merge(userId, dto.sourceId, dto.targetId);
   }
 }

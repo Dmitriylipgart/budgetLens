@@ -26,11 +26,21 @@ export function Categories() {
             {loading
               ? Array.from({ length: 5 }).map((_, i) => (
                   <tr key={i} className="animate-pulse">
-                    <td className="px-4 py-3"><div className="h-4 w-40 rounded bg-gray-200" /></td>
-                    <td className="px-4 py-3"><div className="h-4 w-20 rounded bg-gray-200 ml-auto" /></td>
-                    <td className="px-4 py-3"><div className="h-4 w-10 rounded bg-gray-200 ml-auto" /></td>
-                    <td className="px-4 py-3"><div className="h-4 w-10 rounded bg-gray-200 ml-auto" /></td>
-                    <td className="px-4 py-3"><div className="h-4 w-full rounded bg-gray-200" /></td>
+                    <td className="px-4 py-3">
+                      <div className="h-4 w-40 rounded bg-gray-200" />
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="h-4 w-20 rounded bg-gray-200 ml-auto" />
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="h-4 w-10 rounded bg-gray-200 ml-auto" />
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="h-4 w-10 rounded bg-gray-200 ml-auto" />
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="h-4 w-full rounded bg-gray-200" />
+                    </td>
                   </tr>
                 ))
               : data.map((c) => {
@@ -49,12 +59,8 @@ export function Categories() {
                       <td className="px-4 py-3 text-right font-medium tabular-nums text-gray-700">
                         {formatAmount(c.totalAmount)} BYN
                       </td>
-                      <td className="px-4 py-3 text-right text-gray-500">
-                        {pct.toFixed(1)}%
-                      </td>
-                      <td className="px-4 py-3 text-right text-gray-500">
-                        {c.transactionCount}
-                      </td>
+                      <td className="px-4 py-3 text-right text-gray-500">{pct.toFixed(1)}%</td>
+                      <td className="px-4 py-3 text-right text-gray-500">{c.transactionCount}</td>
                       <td className="px-4 py-3">
                         <div className="h-2 w-full rounded-full bg-gray-100 overflow-hidden">
                           <div

@@ -7,13 +7,16 @@ import { formatDateTime } from '../utils/formatters';
 import type { ImportResult, UploadRecord } from '../types';
 
 export function Upload() {
-  const [step, setStep] = useState<'idle' | 'uploading' | 'parsing' | 'saving' | 'done' | 'error'>('idle');
+  const [step, setStep] = useState<'idle' | 'uploading' | 'parsing' | 'saving' | 'done' | 'error'>(
+    'idle',
+  );
   const [result, setResult] = useState<ImportResult | null>(null);
   const [error, setError] = useState('');
   const [history, setHistory] = useState<UploadRecord[]>([]);
 
   useEffect(() => {
-    api.getUploads()
+    api
+      .getUploads()
       .then((res) => setHistory(res.data || res))
       .catch(console.error);
   }, [result]);
@@ -75,12 +78,17 @@ export function Upload() {
                 <tr key={u.id} className="hover:bg-gray-50">
                   <td className="px-4 py-2 font-medium text-gray-700">{u.filename}</td>
                   <td className="px-4 py-2">
-                    <span className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
-                      u.status === 'success' ? 'bg-emerald-100 text-emerald-700'
-                      : u.status === 'duplicate' ? 'bg-amber-100 text-amber-700'
-                      : u.status === 'error' ? 'bg-red-100 text-red-700'
-                      : 'bg-gray-100 text-gray-600'
-                    }`}>
+                    <span
+                      className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
+                        u.status === 'success'
+                          ? 'bg-emerald-100 text-emerald-700'
+                          : u.status === 'duplicate'
+                            ? 'bg-amber-100 text-amber-700'
+                            : u.status === 'error'
+                              ? 'bg-red-100 text-red-700'
+                              : 'bg-gray-100 text-gray-600'
+                      }`}
+                    >
                       {u.status}
                     </span>
                   </td>

@@ -2,9 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MerchantController } from './merchant.controller';
 import { MerchantService } from './merchant.service';
-import { Merchant } from '../database/entities/merchant.entity';
-import { MerchantAlias } from '../database/entities/merchant-alias.entity';
-import { Transaction } from '../database/entities/transaction.entity';
+import { Merchant, MerchantAlias, Transaction } from '@server/database/entities';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Merchant, MerchantAlias, Transaction])],

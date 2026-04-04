@@ -1,8 +1,5 @@
 import { Module, Global } from '@nestjs/common';
-import {
-  ConfigModule as NestConfigModule,
-  ConfigService,
-} from '@nestjs/config';
+import { ConfigModule as NestConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
 import configuration from './configuration';
 
@@ -13,12 +10,8 @@ import configuration from './configuration';
       isGlobal: true,
       load: [configuration],
       validationSchema: Joi.object({
-        NODE_ENV: Joi.string()
-          .valid('development', 'production')
-          .default('development'),
-        APP_MODE: Joi.string()
-          .valid('single_user', 'multi_user')
-          .default('single_user'),
+        NODE_ENV: Joi.string().valid('development', 'production').default('development'),
+        APP_MODE: Joi.string().valid('single_user', 'multi_user').default('single_user'),
         PORT: Joi.number().default(3000),
         HOST: Joi.string().default('localhost'),
         DB_PATH: Joi.string().default('./data/budgetlens.db'),
@@ -26,9 +19,7 @@ import configuration from './configuration';
         DEFAULT_USER_EMAIL: Joi.string().default('owner@local'),
         ANTHROPIC_API_KEY: Joi.string().optional().default(''),
         GEMINI_API_KEY: Joi.string().optional().default(''),
-        AI_PROVIDER: Joi.string()
-          .valid('claude', 'gemini')
-          .default('claude'),
+        AI_PROVIDER: Joi.string().valid('claude', 'gemini').default('claude'),
         AI_MODEL: Joi.string().default('claude-haiku-4-5-20251001'),
         AI_MAX_TOKENS: Joi.number().default(16000),
         UPLOAD_DIR: Joi.string().default('./data/uploads'),

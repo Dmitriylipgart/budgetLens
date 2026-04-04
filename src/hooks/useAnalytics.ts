@@ -10,7 +10,8 @@ export function useOverview() {
 
   useEffect(() => {
     setLoading(true);
-    api.getOverview(period.from, period.to)
+    api
+      .getOverview(period.from, period.to)
       .then((res) => setData(res.data || res))
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -26,7 +27,8 @@ export function useTopMerchants(limit = 10) {
 
   useEffect(() => {
     setLoading(true);
-    api.getByMerchant(period.from, period.to, limit)
+    api
+      .getByMerchant(period.from, period.to, limit)
       .then((res) => setData(res.data || res))
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -42,7 +44,8 @@ export function useCategories() {
 
   useEffect(() => {
     setLoading(true);
-    api.getByCategory(period.from, period.to)
+    api
+      .getByCategory(period.from, period.to)
       .then((res) => setData(res.data || res))
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -58,7 +61,8 @@ export function useTrends(granularity: 'day' | 'week' | 'month' = 'day') {
 
   useEffect(() => {
     setLoading(true);
-    api.getTrends(period.from, period.to, granularity)
+    api
+      .getTrends(period.from, period.to, granularity)
       .then((res) => setData(res.data || res))
       .catch(console.error)
       .finally(() => setLoading(false));

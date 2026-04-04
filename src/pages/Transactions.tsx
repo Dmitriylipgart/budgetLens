@@ -14,8 +14,12 @@ export function Transactions() {
   const [page, setPage] = useState(1);
 
   const { items, total, totalPages, loading, error } = useTransactions({
-    from, to, direction: direction || undefined, search: search || undefined,
-    page, limit: 50,
+    from,
+    to,
+    direction: direction || undefined,
+    search: search || undefined,
+    page,
+    limit: 50,
   });
 
   return (
@@ -23,10 +27,20 @@ export function Transactions() {
       <h1 className="text-xl font-bold text-gray-900">Transactions</h1>
 
       <FilterBar
-        from={from} to={to} direction={direction} search={search}
-        onFromChange={setFrom} onToChange={setTo}
-        onDirectionChange={(d) => { setDirection(d); setPage(1); }}
-        onSearchChange={(s) => { setSearch(s); setPage(1); }}
+        from={from}
+        to={to}
+        direction={direction}
+        search={search}
+        onFromChange={setFrom}
+        onToChange={setTo}
+        onDirectionChange={(d) => {
+          setDirection(d);
+          setPage(1);
+        }}
+        onSearchChange={(s) => {
+          setSearch(s);
+          setPage(1);
+        }}
       />
 
       {items.length === 0 && !loading ? (

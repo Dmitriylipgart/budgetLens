@@ -6,7 +6,8 @@ export function Settings() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.getStatements()
+    api
+      .getStatements()
       .then((res) => setStatements(res.data || res))
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -40,7 +41,9 @@ export function Settings() {
         <h3 className="text-sm font-semibold text-gray-700 mb-3">Imported Statements</h3>
         {loading ? (
           <div className="animate-pulse space-y-2">
-            {[1, 2].map((i) => <div key={i} className="h-8 rounded bg-gray-100" />)}
+            {[1, 2].map((i) => (
+              <div key={i} className="h-8 rounded bg-gray-100" />
+            ))}
           </div>
         ) : statements.length === 0 ? (
           <p className="text-sm text-gray-400">No statements imported yet.</p>

@@ -17,13 +17,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as path from 'path';
 import * as fs from 'fs';
-import {AI_PARSE_SERVICE, IAiParseService} from "@server/upload/services/ai-parse.interface";
-import {ImportService} from "@server/upload/services/import.service";
-import {Statement, Upload} from "@server/database/entities";
-import {CurrentUser} from "@server/auth/decorators/current-user.decorator";
-import {ImportResultDto} from "@server/upload/dto/import-result.dto";
-import {hashFile} from "@common/utils/hash.util";
-
+import { AI_PARSE_SERVICE, IAiParseService } from '@server/upload/services/ai-parse.interface';
+import { ImportService } from '@server/upload/services/import.service';
+import { Statement, Upload } from '@server/database/entities';
+import { CurrentUser } from '@server/auth/decorators/current-user.decorator';
+import { ImportResultDto } from '@server/upload/dto/import-result.dto';
+import { hashFile } from '@common/utils/hash.util';
 
 @Controller('upload')
 export class UploadController {
@@ -44,8 +43,7 @@ export class UploadController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: (req, file, cb) => {
-          const uploadDir =
-            process.env.UPLOAD_DIR || './data/uploads';
+          const uploadDir = process.env.UPLOAD_DIR || './data/uploads';
           if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir, { recursive: true });
           }
@@ -58,10 +56,7 @@ export class UploadController {
         },
       }),
       fileFilter: (req, file, cb) => {
-        if (
-          file.mimetype === 'text/csv' ||
-          file.originalname.endsWith('.csv')
-        ) {
+        if (file.mimetype === 'text/csv' || file.originalname.endsWith('.csv')) {
           cb(null, true);
         } else {
           cb(new BadRequestException('Only CSV files are accepted'), false);
@@ -127,16 +122,10 @@ export class UploadController {
       const csvText = this.parseService.decodeFile(file.path);
 
       // 5. Parse with AI
-      const { result, tokensUsed, model } =
-        await this.parseService.parseWithAI(csvText);
+      const { result, tokensUsed, model } = await this.parseService.parseWithAI(csvText);
 
       // 6. Import into database
-      const stats = await this.importService.import(
-        result,
-        userId,
-        fileHash,
-        file.originalname,
-      );
+      const stats = await this.importService.import(result, userId, fileHash, file.originalname);
 
       const processingMs = Date.now() - startTime;
 
@@ -175,9 +164,7 @@ export class UploadController {
       await this.uploadRepo.save(upload);
 
       this.logger.error(`Upload failed: ${err.message}`);
-      throw new InternalServerErrorException(
-        `Import failed: ${err.message}`,
-      );
+      throw new InternalServerErrorException(`Import failed: ${err.message}`);
     }
   }
 

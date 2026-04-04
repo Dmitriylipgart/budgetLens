@@ -12,10 +12,7 @@ export class StatementController {
   }
 
   @Delete(':id')
-  async delete(
-    @CurrentUser() userId: number,
-    @Param('id') id: number,
-  ) {
+  async delete(@CurrentUser() userId: number, @Param('id') id: number) {
     return this.statementService.delete(userId, id);
   }
 }

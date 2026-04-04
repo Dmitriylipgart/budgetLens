@@ -8,10 +8,7 @@ export class TransactionController {
   constructor(private transactionService: TransactionService) {}
 
   @Get()
-  async findAll(
-    @CurrentUser() userId: number,
-    @Query() query: TransactionQueryDto,
-  ) {
+  async findAll(@CurrentUser() userId: number, @Query() query: TransactionQueryDto) {
     return this.transactionService.findAll(userId, query);
   }
 }

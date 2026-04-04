@@ -1,21 +1,19 @@
 import { useState, useRef, useEffect } from 'react';
 import { usePeriod } from '../../hooks/usePeriod';
-import {
-  getCurrentMonth,
-  getLastMonth,
-  getLastNMonths,
-  formatDate,
-} from '../../utils/formatters';
+import { getCurrentMonth, getLastMonth, getLastNMonths, formatDate } from '../../utils/formatters';
 
 const presets = [
   { label: 'This Month', fn: getCurrentMonth },
   { label: 'Last Month', fn: getLastMonth },
   { label: 'Last 3 Months', fn: () => getLastNMonths(3) },
   { label: 'Last 6 Months', fn: () => getLastNMonths(6) },
-  { label: 'This Year', fn: () => {
-    const y = new Date().getFullYear();
-    return { from: `${y}-01-01`, to: `${y}-12-31` };
-  }},
+  {
+    label: 'This Year',
+    fn: () => {
+      const y = new Date().getFullYear();
+      return { from: `${y}-01-01`, to: `${y}-12-31` };
+    },
+  },
 ];
 
 export function PeriodSelector() {
@@ -59,7 +57,12 @@ export function PeriodSelector() {
         <span className="text-xs text-gray-400">
           {formatDate(period.from)} — {formatDate(period.to)}
         </span>
-        <svg className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg
+          className="h-4 w-4 text-gray-400"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>

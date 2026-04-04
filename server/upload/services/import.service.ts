@@ -94,14 +94,8 @@ export class ImportService {
       let newMerchantCount = 0;
 
       // Collect all unique merchants from transactions
-      const allTxns = [
-        ...data.transactions,
-        ...(data.blockedTransactions || []),
-      ];
-      const merchantSet = new Map<
-        string,
-        { confidence: string; categories: Set<string> }
-      >();
+      const allTxns = [...data.transactions, ...(data.blockedTransactions || [])];
+      const merchantSet = new Map<string, { confidence: string; categories: Set<string> }>();
 
       for (const txn of allTxns) {
         if (!merchantSet.has(txn.merchant)) {
@@ -123,17 +117,13 @@ export class ImportService {
 
         if (!merchant) {
           // Find category group from the merchant summary if available
-          const summaryEntry = data.merchantSummary?.find(
-            (m) => m.merchant === name,
-          );
+          const summaryEntry = data.merchantSummary?.find((m) => m.merchant === name);
 
           merchant = queryRunner.manager.create(Merchant, {
             userId,
             name,
             confidence: info.confidence,
-            categoryGroup: this.deriveCategoryGroup(
-              Array.from(info.categories),
-            ) || undefined,
+            categoryGroup: this.deriveCategoryGroup(Array.from(info.categories)) || undefined,
           });
           merchant = await queryRunner.manager.save(merchant);
           newMerchantCount++;
@@ -180,9 +170,7 @@ export class ImportService {
           continue;
         }
 
-        const merchantId =
-          aliasCache.get(txn.rawDescription) ||
-          merchantIdByName.get(txn.merchant);
+        const merchantId = aliasCache.get(txn.rawDescription) || merchantIdByName.get(txn.merchant);
 
         const transaction = queryRunner.manager.create(Transaction, {
           userId,
@@ -207,9 +195,7 @@ export class ImportService {
 
       // 7. Insert blocked transactions
       for (const txn of data.blockedTransactions || []) {
-        const merchantId =
-          aliasCache.get(txn.rawDescription) ||
-          merchantIdByName.get(txn.merchant);
+        const merchantId = aliasCache.get(txn.rawDescription) || merchantIdByName.get(txn.merchant);
 
         const transaction = queryRunner.manager.create(Transaction, {
           userId,
@@ -257,7 +243,7 @@ export class ImportService {
     const categoryMap: Record<string, string> = {
       'Магазины продуктовые': 'Food & Essentials',
       'Ресторация / бары / кафе': 'Food & Essentials',
-      'Аптеки': 'Health',
+      Аптеки: 'Health',
       'Медицинский сервис': 'Health',
       'Ветеринарный сервис': 'Health',
       'Магазины одежды': 'Shopping',
@@ -270,11 +256,11 @@ export class ImportService {
       'Переводы с карты на карту': 'Transfers',
       'Поставщик  услуг': 'Transfers',
       'Снятие наличных': 'Cash',
-      'Развлечения': 'Lifestyle',
+      Развлечения: 'Lifestyle',
       'Бизнес услуги': 'Services',
       'Автозапчасти / ремонт авто': 'Transport',
       'Индивидуальные сервис провайдеры': 'Services',
-      'Прочее': 'Other',
+      Прочее: 'Other',
     };
 
     for (const cat of categories) {

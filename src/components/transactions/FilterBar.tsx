@@ -10,8 +10,14 @@ interface Props {
 }
 
 export function FilterBar({
-  from, to, direction, search,
-  onFromChange, onToChange, onDirectionChange, onSearchChange,
+  from,
+  to,
+  direction,
+  search,
+  onFromChange,
+  onToChange,
+  onDirectionChange,
+  onSearchChange,
 }: Props) {
   return (
     <div className="flex flex-wrap items-center gap-3 rounded-xl bg-white p-4 shadow-sm border border-gray-200">

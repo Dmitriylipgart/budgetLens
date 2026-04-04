@@ -25,13 +25,7 @@ export abstract class BaseParseService {
   protected getSkillContent(): string {
     if (this.skillContent) return this.skillContent;
 
-    const skillPath = path.join(
-      __dirname,
-      '..',
-      'skills',
-      'bank-csv-parser',
-      'SKILL.md',
-    );
+    const skillPath = path.join(__dirname, '..', 'skills', 'bank-csv-parser', 'SKILL.md');
 
     const fallbackPath = path.join(
       process.cwd(),
@@ -96,9 +90,7 @@ export abstract class BaseParseService {
     // Validate structure
     const validationErrors = validateParseResult(parsed);
     if (validationErrors.length > 0) {
-      this.logger.error(
-        `Parse result validation failed: ${validationErrors.join('; ')}`,
-      );
+      this.logger.error(`Parse result validation failed: ${validationErrors.join('; ')}`);
       throw new InternalServerErrorException(
         `AI response validation failed: ${validationErrors.join('; ')}`,
       );

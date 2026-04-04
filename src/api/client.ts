@@ -1,9 +1,6 @@
 const BASE_URL = '/api';
 
-async function request<T>(
-  path: string,
-  options?: RequestInit,
-): Promise<T> {
+async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE_URL}${path}`, {
     headers: {
       'Content-Type': 'application/json',
@@ -94,8 +91,7 @@ export const api = {
 
   // Statements
   getStatements: () => request<any>('/statements'),
-  deleteStatement: (id: number) =>
-    request<any>(`/statements/${id}`, { method: 'DELETE' }),
+  deleteStatement: (id: number) => request<any>(`/statements/${id}`, { method: 'DELETE' }),
 
   // Settings
   getSettings: () => request<any>('/settings'),

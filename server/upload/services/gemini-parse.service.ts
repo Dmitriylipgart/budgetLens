@@ -108,14 +108,10 @@ export class GeminiParseService extends BaseParseService implements IAiParseServ
       throw new InternalServerErrorException('Gemini API returned no content');
     }
 
-    const rawText = candidate.content.parts
-      .map((p: any) => p.text || '')
-      .join('');
+    const rawText = candidate.content.parts.map((p: any) => p.text || '').join('');
 
     const usage = responseData.usageMetadata;
-    const tokensUsed =
-      (usage?.promptTokenCount || 0) +
-      (usage?.candidatesTokenCount || 0);
+    const tokensUsed = (usage?.promptTokenCount || 0) + (usage?.candidatesTokenCount || 0);
 
     const result = this.extractJson(rawText);
 

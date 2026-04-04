@@ -24,13 +24,7 @@ export class ParseService {
   private getSkillContent(): string {
     if (this.skillContent) return this.skillContent;
 
-    const skillPath = path.join(
-      __dirname,
-      '..',
-      'skills',
-      'bank-csv-parser',
-      'SKILL.md',
-    );
+    const skillPath = path.join(__dirname, '..', 'skills', 'bank-csv-parser', 'SKILL.md');
 
     // Fallback: try relative to project root (dev mode)
     const fallbackPath = path.join(
@@ -74,9 +68,7 @@ export class ParseService {
     const maxTokens = this.configService.get<number>('AI_MAX_TOKENS') || 16000;
     const skill = this.getSkillContent();
 
-    this.logger.log(
-      `Calling Claude API (model: ${model}, csv length: ${csvText.length})`,
-    );
+    this.logger.log(`Calling Claude API (model: ${model}, csv length: ${csvText.length})`);
 
     const startTime = Date.now();
 
@@ -96,9 +88,7 @@ export class ParseService {
       });
     } catch (err: any) {
       this.logger.error(`Claude API call failed: ${err.message}`);
-      throw new InternalServerErrorException(
-        `AI parsing failed: ${err.message}`,
-      );
+      throw new InternalServerErrorException(`AI parsing failed: ${err.message}`);
     }
 
     const elapsed = Date.now() - startTime;
@@ -107,15 +97,11 @@ export class ParseService {
     // Extract text content from response
     const textBlock = response.content.find((b) => b.type === 'text');
     if (!textBlock || textBlock.type !== 'text') {
-      throw new InternalServerErrorException(
-        'Claude API returned no text content',
-      );
+      throw new InternalServerErrorException('Claude API returned no text content');
     }
 
     const rawText = textBlock.text.trim();
-    const tokensUsed =
-      (response.usage?.input_tokens || 0) +
-      (response.usage?.output_tokens || 0);
+    const tokensUsed = (response.usage?.input_tokens || 0) + (response.usage?.output_tokens || 0);
 
     // Extract JSON from response (may be wrapped in ```json ... ```)
     let jsonStr = rawText;
@@ -135,10 +121,7 @@ export class ParseService {
       // Save failed response for debugging
       const errorDir = path.join(process.cwd(), 'data', 'error_logs');
       if (!fs.existsSync(errorDir)) fs.mkdirSync(errorDir, { recursive: true });
-      const errorFile = path.join(
-        errorDir,
-        `parse_error_${Date.now()}.txt`,
-      );
+      const errorFile = path.join(errorDir, `parse_error_${Date.now()}.txt`);
       fs.writeFileSync(errorFile, rawText);
       this.logger.log(`Saved failed response to ${errorFile}`);
 
@@ -150,9 +133,7 @@ export class ParseService {
     // Validate structure
     const validationErrors = validateParseResult(parsed);
     if (validationErrors.length > 0) {
-      this.logger.error(
-        `Parse result validation failed: ${validationErrors.join('; ')}`,
-      );
+      this.logger.error(`Parse result validation failed: ${validationErrors.join('; ')}`);
       throw new InternalServerErrorException(
         `AI response validation failed: ${validationErrors.join('; ')}`,
       );

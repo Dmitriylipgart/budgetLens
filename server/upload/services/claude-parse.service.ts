@@ -49,9 +49,7 @@ export class ClaudeParseService extends BaseParseService implements IAiParseServ
       throw new InternalServerErrorException('Claude API returned no text content');
     }
 
-    const tokensUsed =
-      (response.usage?.input_tokens || 0) +
-      (response.usage?.output_tokens || 0);
+    const tokensUsed = (response.usage?.input_tokens || 0) + (response.usage?.output_tokens || 0);
 
     const result = this.extractJson(textBlock.text);
 

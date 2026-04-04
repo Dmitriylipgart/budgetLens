@@ -59,9 +59,7 @@ export function SpendingTrend({ data, loading }: Props) {
               `${formatAmount(value)} BYN`,
               name === 'expense' ? 'Expense' : 'Income',
             ]}
-            labelFormatter={(label) =>
-              label.length === 10 ? formatDate(label) : label
-            }
+            labelFormatter={(label) => (label.length === 10 ? formatDate(label) : label)}
           />
           <Area
             type="monotone"

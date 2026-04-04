@@ -7,7 +7,8 @@ export function useMerchants() {
 
   const fetchMerchants = () => {
     setLoading(true);
-    api.getMerchants()
+    api
+      .getMerchants()
       .then((res) => setMerchants(res.data || res))
       .catch(console.error)
       .finally(() => setLoading(false));

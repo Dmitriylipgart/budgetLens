@@ -8,7 +8,8 @@ export function RecentTransactions() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.getRecent()
+    api
+      .getRecent()
       .then((res) => setTransactions((res.data || res).slice(0, 10)))
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -38,14 +39,13 @@ export function RecentTransactions() {
           >
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium text-gray-900">
-                {txn.merchant?.displayName || txn.merchant?.name || txn.rawDescription?.substring(0, 40)}
+                {txn.merchant?.displayName ||
+                  txn.merchant?.name ||
+                  txn.rawDescription?.substring(0, 40)}
               </p>
               <p className="text-xs text-gray-400">{formatDateTime(txn.date)}</p>
             </div>
-            <AmountDisplay
-              amount={txn.accountAmount}
-              className="ml-3 text-sm"
-            />
+            <AmountDisplay amount={txn.accountAmount} className="ml-3 text-sm" />
           </div>
         ))}
         {transactions.length === 0 && (

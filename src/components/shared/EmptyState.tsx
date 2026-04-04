@@ -1,4 +1,10 @@
-export function LoadingSkeleton({ rows = 3, className = '' }: { rows?: number; className?: string }) {
+export function LoadingSkeleton({
+  rows = 3,
+  className = '',
+}: {
+  rows?: number;
+  className?: string;
+}) {
   return (
     <div className={`animate-pulse space-y-3 ${className}`}>
       {Array.from({ length: rows }).map((_, i) => (
@@ -8,7 +14,12 @@ export function LoadingSkeleton({ rows = 3, className = '' }: { rows?: number; c
   );
 }
 
-export function EmptyState({ icon = '📭', title, description, action }: {
+export function EmptyState({
+  icon = '📭',
+  title,
+  description,
+  action,
+}: {
   icon?: string;
   title: string;
   description?: string;

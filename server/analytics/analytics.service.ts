@@ -24,8 +24,8 @@ export class AnalyticsService {
 
     const result = await qb
       .select([
-        'SUM(CASE WHEN txn.direction = \'income\' THEN txn.accountAmount ELSE 0 END) as totalIncome',
-        'SUM(CASE WHEN txn.direction = \'expense\' THEN ABS(txn.accountAmount) ELSE 0 END) as totalExpense',
+        "SUM(CASE WHEN txn.direction = 'income' THEN txn.accountAmount ELSE 0 END) as totalIncome",
+        "SUM(CASE WHEN txn.direction = 'expense' THEN ABS(txn.accountAmount) ELSE 0 END) as totalExpense",
         'COUNT(*) as transactionCount',
       ])
       .getRawOne();
@@ -44,12 +44,7 @@ export class AnalyticsService {
   /**
    * Spending grouped by merchant, sorted by total amount descending.
    */
-  async getByMerchant(
-    userId: number,
-    from?: string,
-    to?: string,
-    limit: number = 20,
-  ) {
+  async getByMerchant(userId: number, from?: string, to?: string, limit: number = 20) {
     const qb = this.txnRepo
       .createQueryBuilder('txn')
       .leftJoin('txn.merchant', 'merchant')
@@ -136,7 +131,7 @@ export class AnalyticsService {
     let dateExpr: string;
     switch (granularity) {
       case 'month':
-        dateExpr = "SUBSTR(txn.date, 1, 7)"; // YYYY-MM
+        dateExpr = 'SUBSTR(txn.date, 1, 7)'; // YYYY-MM
         break;
       case 'week':
         // SQLite: get the date and round down to Monday
@@ -144,15 +139,15 @@ export class AnalyticsService {
         break;
       case 'day':
       default:
-        dateExpr = "SUBSTR(txn.date, 1, 10)"; // YYYY-MM-DD
+        dateExpr = 'SUBSTR(txn.date, 1, 10)'; // YYYY-MM-DD
         break;
     }
 
     const results = await qb
       .select([
         `${dateExpr} as period`,
-        'SUM(CASE WHEN txn.direction = \'income\' THEN txn.accountAmount ELSE 0 END) as income',
-        'SUM(CASE WHEN txn.direction = \'expense\' THEN ABS(txn.accountAmount) ELSE 0 END) as expense',
+        "SUM(CASE WHEN txn.direction = 'income' THEN txn.accountAmount ELSE 0 END) as income",
+        "SUM(CASE WHEN txn.direction = 'expense' THEN ABS(txn.accountAmount) ELSE 0 END) as expense",
         'COUNT(*) as transactionCount',
       ])
       .groupBy('period')

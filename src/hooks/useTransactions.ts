@@ -49,7 +49,8 @@ export function useTransactions(filters: TransactionFilters): TransactionResult 
     if (filters.sort) params.sort = filters.sort;
     if (filters.order) params.order = filters.order;
 
-    api.getTransactions(params)
+    api
+      .getTransactions(params)
       .then((res) => {
         const payload = res.data || res;
         setItems(payload.data || payload);
@@ -63,9 +64,16 @@ export function useTransactions(filters: TransactionFilters): TransactionResult 
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, [
-    filters.from, filters.to, filters.merchantId, filters.category,
-    filters.direction, filters.search, filters.page, filters.limit,
-    filters.sort, filters.order,
+    filters.from,
+    filters.to,
+    filters.merchantId,
+    filters.category,
+    filters.direction,
+    filters.search,
+    filters.page,
+    filters.limit,
+    filters.sort,
+    filters.order,
   ]);
 
   useEffect(() => {

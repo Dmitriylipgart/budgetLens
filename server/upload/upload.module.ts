@@ -15,14 +15,7 @@ import { BankFormat } from '../database/entities/bank-format.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
-      Upload,
-      Statement,
-      Transaction,
-      Merchant,
-      MerchantAlias,
-      BankFormat,
-    ]),
+    TypeOrmModule.forFeature([Upload, Statement, Transaction, Merchant, MerchantAlias, BankFormat]),
   ],
   controllers: [UploadController],
   providers: [

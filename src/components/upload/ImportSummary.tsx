@@ -12,7 +12,9 @@ export function ImportSummary({ result }: Props) {
         <p className="text-sm font-semibold text-amber-800">Duplicate file</p>
         <p className="mt-1 text-sm text-amber-600">
           This statement has already been imported
-          {result.period && ` (${formatDate(result.period.from)} — ${formatDate(result.period.to)})`}.
+          {result.period &&
+            ` (${formatDate(result.period.from)} — ${formatDate(result.period.to)})`}
+          .
         </p>
       </div>
     );

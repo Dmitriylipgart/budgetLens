@@ -1,12 +1,4 @@
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  Cell,
-} from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { formatAmount } from '../../utils/formatters';
 import { getCategoryColor } from '../../utils/colors';
 import type { CategorySummary } from '../../types';
@@ -50,9 +42,7 @@ export function TopCategories({ data, loading }: Props) {
           />
           <Tooltip
             formatter={(value: number) => [`${formatAmount(value)} BYN`, 'Spent']}
-            labelFormatter={(label, payload) =>
-              payload?.[0]?.payload?.fullName || label
-            }
+            labelFormatter={(label, payload) => payload?.[0]?.payload?.fullName || label}
           />
           <Bar dataKey="amount" radius={[0, 4, 4, 0]}>
             {chartData.map((entry, index) => (

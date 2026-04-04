@@ -53,9 +53,7 @@ export function DropZone({ onFileSelect, disabled = false }: Props) {
       <p className="text-sm font-medium text-gray-700">
         {disabled ? 'Processing...' : 'Drop your bank CSV here, or click to browse'}
       </p>
-      <p className="mt-1 text-xs text-gray-400">
-        Priorbank export (.csv, Windows-1251)
-      </p>
+      <p className="mt-1 text-xs text-gray-400">Priorbank export (.csv, Windows-1251)</p>
       <input
         ref={inputRef}
         type="file"

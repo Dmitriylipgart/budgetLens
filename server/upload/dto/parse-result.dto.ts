@@ -99,16 +99,13 @@ export function validateParseResult(data: any): string[] {
     for (let i = 0; i < data.transactions.length; i++) {
       const txn = data.transactions[i];
       if (!txn.date) errors.push(`Transaction ${i}: missing date`);
-      if (!txn.rawDescription)
-        errors.push(`Transaction ${i}: missing rawDescription`);
-      if (typeof txn.amount !== 'number')
-        errors.push(`Transaction ${i}: amount is not a number`);
+      if (!txn.rawDescription) errors.push(`Transaction ${i}: missing rawDescription`);
+      if (typeof txn.amount !== 'number') errors.push(`Transaction ${i}: amount is not a number`);
       if (typeof txn.accountAmount !== 'number')
         errors.push(`Transaction ${i}: accountAmount is not a number`);
       if (!txn.direction || !['income', 'expense'].includes(txn.direction))
         errors.push(`Transaction ${i}: invalid direction "${txn.direction}"`);
-      if (!txn.merchant)
-        errors.push(`Transaction ${i}: missing merchant`);
+      if (!txn.merchant) errors.push(`Transaction ${i}: missing merchant`);
     }
   }
 
