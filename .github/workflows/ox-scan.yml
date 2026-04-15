@@ -16,7 +16,7 @@ jobs:
       - name: OX Security Scan
         uses: oxsecurity/ox-security-scan@main
         with:
-          ox_api_key: ${{ secrets.OX_API_KEY }}
+          ox_api_key: ${{secrets.OX_API_KEY}}
           # ox_override_blocking: false
           # ox_timeout: 20
           # ox_fail_on_timeout: false
